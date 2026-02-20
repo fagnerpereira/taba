@@ -2,15 +2,15 @@
 
 ### Repositório & Código
 
-- [] Código no GitHub (público): URL DO REPO
+- [x] Código no GitHub (público): URL DO REPO
 - [] README com instruções completas
-- [] Linter/formatter configurado
+- [x] Linter/formatter configurado
 - [] Código limpo e organizado
 
 ### Stack Utilizada
 
-- [] Backend: Ruby on Rails 8.1.2
-- [] Frontend: HAML + Stimulus + Tailwind CSS
+- [x] Backend: Ruby on Rails 8.1.2
+- [] Frontend: Slim + Stimulus + Tailwind CSS
 - [] Banco de dados: PostgreSQL
 - [] Testes: RSpec com SimpleCov
 
