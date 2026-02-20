@@ -52,4 +52,4 @@ jobs:
           bundler-cache: true # Removes hardcoded ruby-version, uses .ruby-version
 
       - name: Lint code for consistent style
-        run: bundle exec standard
+        run: bundle exec standardrb
