@@ -21,7 +21,7 @@ A community management platform with REST API, modern web interface, and AI-powe
 
 ### Frontend
 
-- **HAML** - Concise templating engine
+- **Slim** - Concise templating engine
 - **Stimulus** - Lightweight JavaScript framework
 - **Tailwind CSS** - Utility-first CSS framework
 - **Turbo** - Fast navigation without page reloads
