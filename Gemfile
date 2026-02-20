@@ -23,7 +23,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
@@ -44,7 +44,7 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
@@ -52,11 +52,25 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  # StandardRB - Ruby style guide, linter, and formatter
+  # Eliminates bike-shedding about code style so teams can focus on what matters:
+  # performance, refactoring, code quality, and test coverage
+  gem "standard", require: false
+  gem "standard-rails", require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+end
+
+group :development, :test do
+  # RSpec testing framework [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails"
+end
+
+group :test do
+  # Code coverage analysis tool [https://github.com/simplecov-ruby/simplecov]
+  # Configure for 70%+ coverage target
+  gem "simplecov", require: false
 end
