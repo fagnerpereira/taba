@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  resources :reactions
+  resources :messages
+  resources :communities
+  resources :users
+
+  namespace :api do
+    namespace :v1 do
+      post 'messages', to: 'messages#create'
+      post 'reactions', to: 'reactions#create'
+      get 'communities/:id/messages/top', to: 'communities#top_messages'
+      get 'analytics/suspicious_ips', to: 'analytics#suspicious_ips'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -1,0 +1,26 @@
+<div id="<%= dom_id message %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= message.user_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Community:</strong>
+    <%= message.community_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Parent message:</strong>
+    <%= message.parent_message_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= message.content %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">User ip:</strong>
+    <%= message.user_ip %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Ai sentiment score:</strong>
+    <%= message.ai_sentiment_score %>
+  </div>
+</div>

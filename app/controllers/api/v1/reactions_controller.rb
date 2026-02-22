@@ -34,7 +34,7 @@ module Api
             details: @reaction.errors.full_messages
           }, status: :unprocessable_content
         end
-      rescue ActiveRecord::RecordNotUnique => e
+      rescue ActiveRecord::RecordNotUnique
         # This is the expected error for concurrency violations in the real implementation
         render json: {
           error: "Duplicate reaction - concurrency protection would prevent this",
