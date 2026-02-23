@@ -36,6 +36,9 @@
 - [] Reagir a mensagens (sem reload)
 - [] Ver thread de comentários
 - [] Responsivo (mobile + desktop)
+  #### Se sobrar tempo, implementar:
+  - [] Componentes utilizando Phlex
+  - [] Testear esses componentes
 
 ### Testes
 

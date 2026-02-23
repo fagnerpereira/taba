@@ -50,7 +50,60 @@ A community management platform with REST API, modern web interface, and AI-powe
 - **Sentiment Analysis** - Visual indicators and emojis
 - **Responsive Design** - Mobile-first with Tailwind
 
-## 🛠️ Local Setup
+## 🐳 Docker (Recommended)
+
+The easiest way to run the app locally is using **Docker Compose**. This setup includes the web server, a database, and a background worker for Solid Queue.
+
+### 1. Start the platform
+
+```bash
+# Build and start all services
+docker compose up --build
+```
+
+The app will be available at `http://localhost:3000`.
+
+### 2. Initial Setup (First time only)
+
+In a new terminal, run the following to prepare the database and seed it:
+
+```bash
+docker compose exec web bin/rails db:prepare db:seed
+```
+
+### 3. Running Totals (Tests & Linting)
+
+```bash
+# Run all RSpec tests
+docker compose exec web bundle exec rspec
+
+# Check code style (StandardRB)
+docker compose exec web bundle exec standardrb
+```
+
+### 4. Debugging & Interactive Shell
+
+If you need to enter the container (e.g., to run a console or debug with `binding.pry`):
+
+```bash
+# Open a bash shell inside the web container
+docker compose exec web bash
+
+# Then you can run rails console, etc:
+bin/rails c
+```
+
+**Pro Tip for Debugging**: Since the `web` service is started with `tty: true` and `stdin_open: true` in `compose.yaml`, you can attach to the running process to use interactive debuggers like `debug` or `pry`:
+
+```bash
+docker attach taba-web
+```
+
+---
+
+## 🛠️ Local Setup (Native)
+
+_Use this if you prefer running the app directly on your host machine without Docker._
 
 ### Prerequisites
 
