@@ -5,11 +5,10 @@ RSpec.describe "Api::V1::Analytics", type: :request do
   let!(:user) { User.create!(username: "testuser_api") }
   let!(:community) { Community.create!(name: "API Test Community") }
 
-
   describe "GET /api/v1/analytics/suspicious_ips" do
     context "when there are suspicious ips with min_users = 3" do
       before do
-        ['Alice', 'Bob', 'Charlie'].each do |name|
+        ["Alice", "Bob", "Charlie"].each do |name|
           Message.create!(
             user: User.create!(username: name),
             community: community,
@@ -33,9 +32,9 @@ RSpec.describe "Api::V1::Analytics", type: :request do
               ip: "10.0.0.1",
               user_count: 2,
               users: [
-                'Alice',
-                'Bob',
-                'Charlie'
+                "Alice",
+                "Bob",
+                "Charlie"
               ]
             }
           ]
