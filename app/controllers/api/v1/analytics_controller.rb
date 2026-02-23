@@ -21,8 +21,6 @@ module Api
         # Stub implementation that will not detect the suspicious patterns
         # in our seeds data (alice/eve share IP, charlie/frank share IP)
 
-        binding.irb
-
         render json: {
           message: "Suspicious IP analysis completed (detection logic pending implementation)",
           suspicious_ips_count: suspicious_ips.length,
