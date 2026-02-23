@@ -1,0 +1,25 @@
+= form_with(model: reaction, class: "contents") do |form|
+  - if reaction.errors.any?
+    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3" id="error_explanation"
+      h2
+        = pluralize(reaction.errors.count, "error")
+        |  prohibited this reaction from being saved:
+
+      ul class="list-disc ml-6"
+        - reaction.errors.each do |error|
+          li = error.full_message
+
+  div class="my-5"
+    = form.label :message_id
+    = form.text_field :message_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": reaction.errors[:message_id].none?, "border-red-400 focus:outline-red-600": reaction.errors[:message_id].any?}]
+
+  div class="my-5"
+    = form.label :user_id
+    = form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": reaction.errors[:user_id].none?, "border-red-400 focus:outline-red-600": reaction.errors[:user_id].any?}]
+
+  div class="my-5"
+    = form.label :reaction_type
+    = form.text_field :reaction_type, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": reaction.errors[:reaction_type].none?, "border-red-400 focus:outline-red-600": reaction.errors[:reaction_type].any?}]
+
+  div class="inline"
+    = form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer"

@@ -1,0 +1,17 @@
+div id=dom_id(message) class="w-full my-5 space-y-5"
+  div
+    strong class="block font-medium mb-1"
+      | Content:
+    = message.content
+  div
+    strong class="block font-medium mb-1"
+      | Community ID:
+    = message.community_id
+  div
+    strong class="block font-medium mb-1"
+      | User ID:
+    = message.user_id
+  div
+    strong class="block font-medium mb-1"
+      | Parent ID:
+    = message.parent_message_id

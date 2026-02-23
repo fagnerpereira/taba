@@ -1,0 +1,33 @@
+= form_with(model: message, class: "contents") do |form|
+  - if message.errors.any?
+    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3" id="error_explanation"
+      h2
+        = pluralize(message.errors.count, "error")
+        |  prohibited this message from being saved:
+
+      ul class="list-disc ml-6"
+        - message.errors.each do |error|
+          li = error.full_message
+
+  div class="my-5"
+    = form.label :content
+    = form.text_area :content, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full h-32", {"border-gray-400 focus:outline-blue-600": message.errors[:content].none?, "border-red-400 focus:outline-red-600": message.errors[:content].any?}]
+
+  div class="my-5"
+    = form.label :community_id
+    = form.text_field :community_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:community_id].none?, "border-red-400 focus:outline-red-600": message.errors[:community_id].any?}]
+
+  div class="my-5"
+    = form.label :user_id
+    = form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:user_id].none?, "border-red-400 focus:outline-red-600": message.errors[:user_id].any?}]
+
+  div class="my-5"
+    = form.label :parent_id
+    = form.text_field :parent_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:parent_id].none?, "border-red-400 focus:outline-red-600": message.errors[:parent_id].any?}]
+
+  div class="my-5"
+    = form.label :deleted_at
+    = form.text_field :deleted_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:deleted_at].none?, "border-red-400 focus:outline-red-600": message.errors[:deleted_at].any?}]
+
+  div class="inline"
+    = form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer"
