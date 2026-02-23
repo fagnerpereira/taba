@@ -11,13 +11,14 @@ ruby_version: 4.0.1 # default: RUBY_VERSION
 default_ignores: false # default: true
 
 plugins: # default: []
-  - standard-rails
+  - standard-rails:
+      target_rails_version: 8.1
 
 # Exclude files that don't need linting
 ignore:
   - "db/schema.rb"
   - "db/migrate/*.rb"
-  - "config/**/*.rb"
+  # - "config/**/*.rb"
   - "bin/**/*"
   - "vendor/**/*"
   - "node_modules/**/*"
@@ -27,7 +28,7 @@ ignore:
   - "storage/**/*"
   - "coverage/**/*"
   - "spec/fixtures/**/*"
-  - "spec/support/**/*.rb"
+  # - "spec/support/**/*.rb"
   # Auto-generated or vendored files
   - "*.json"
   - "*.yml"

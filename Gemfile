@@ -57,6 +57,13 @@ group :development, :test do
   # performance, refactoring, code quality, and test coverage
   gem "standard", require: false
   gem "standard-rails", require: false
+
+  # RSpec testing framework [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "ruby-lsp-rails"
+  gem "ruby-lsp-rspec", require: false
+  gem "ruby-lsp-rails-factory-bot", require: false
 end
 
 group :development do
@@ -64,13 +71,10 @@ group :development do
   gem "web-console"
 end
 
-group :development, :test do
-  # RSpec testing framework [https://github.com/rspec/rspec-rails]
-  gem "rspec-rails"
-end
-
 group :test do
   # Code coverage analysis tool [https://github.com/simplecov-ruby/simplecov]
   # Configure for 70%+ coverage target
   gem "simplecov", require: false
 end
+
+gem "slim-rails", "~> 4.0"
