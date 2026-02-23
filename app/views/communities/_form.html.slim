@@ -1,0 +1,33 @@
+= form_with(model: community, class: "contents") do |form|
+  - if community.errors.any?
+    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3" id="error_explanation"
+      h2
+        = pluralize(community.errors.count, "error")
+        |  prohibited this community from being saved:
+
+      ul class="list-disc ml-6"
+        - community.errors.each do |error|
+          li = error.full_message
+
+  div class="my-5"
+    = form.label :name
+    = form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": community.errors[:name].none?, "border-red-400 focus:outline-red-600": community.errors[:name].any?}]
+
+  div class="my-5"
+    = form.label :description
+    = form.text_area :description, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full h-32", {"border-gray-400 focus:outline-blue-600": community.errors[:description].none?, "border-red-400 focus:outline-red-600": community.errors[:description].any?}]
+
+  div class="my-5"
+    = form.label :owner_id
+    = form.text_field :owner_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": community.errors[:owner_id].none?, "border-red-400 focus:outline-red-600": community.errors[:owner_id].any?}]
+
+  div class="my-5"
+    = form.label :created_at
+    = form.text_field :created_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": community.errors[:created_at].none?, "border-red-400 focus:outline-red-600": community.errors[:created_at].any?}]
+
+  div class="my-5"
+    = form.label :updated_at
+    = form.text_field :updated_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": community.errors[:updated_at].none?, "border-red-400 focus:outline-red-600": community.errors[:updated_at].any?}]
+
+  div class="inline"
+    = form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer"

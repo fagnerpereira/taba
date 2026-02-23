@@ -1,0 +1,69 @@
+= form_with(model: user, class: "contents") do |form|
+  - if user.errors.any?
+    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3" id="error_explanation"
+      h2
+        = pluralize(user.errors.count, "error")
+        |  prohibited this user from being saved:
+
+      ul class="list-disc ml-6"
+        - user.errors.each do |error|
+          li = error.full_message
+
+  div class="my-5"
+    = form.label :email
+    = form.text_field :email, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:email].none?, "border-red-400 focus:outline-red-600": user.errors[:email].any?}]
+
+  div class="my-5"
+    = form.label :encrypted_password
+    = form.text_field :encrypted_password, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:encrypted_password].none?, "border-red-400 focus:outline-red-600": user.errors[:encrypted_password].any?}]
+
+  div class="my-5"
+    = form.label :reset_password_token
+    = form.text_field :reset_password_token, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:reset_password_token].none?, "border-red-400 focus:outline-red-600": user.errors[:reset_password_token].any?}]
+
+  div class="my-5"
+    = form.label :reset_password_sent_at
+    = form.text_field :reset_password_sent_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:reset_password_sent_at].none?, "border-red-400 focus:outline-red-600": user.errors[:reset_password_sent_at].any?}]
+
+  div class="my-5"
+    = form.label :remember_created_at
+    = form.text_field :remember_created_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:remember_created_at].none?, "border-red-400 focus:outline-red-600": user.errors[:remember_created_at].any?}]
+
+  div class="my-5"
+    = form.label :confirmation_token
+    = form.text_field :confirmation_token, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:confirmation_token].none?, "border-red-400 focus:outline-red-600": user.errors[:confirmation_token].any?}]
+
+  div class="my-5"
+    = form.label :confirmed_at
+    = form.text_field :confirmed_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:confirmed_at].none?, "border-red-400 focus:outline-red-600": user.errors[:confirmed_at].any?}]
+
+  div class="my-5"
+    = form.label :confirmation_sent_at
+    = form.text_field :confirmation_sent_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:confirmation_sent_at].none?, "border-red-400 focus:outline-red-600": user.errors[:confirmation_sent_at].any?}]
+
+  div class="my-5"
+    = form.label :unconfirmed_email
+    = form.text_field :unconfirmed_email, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:unconfirmed_email].none?, "border-red-400 focus:outline-red-600": user.errors[:unconfirmed_email].any?}]
+
+  div class="my-5"
+    = form.label :failed_attempts
+    = form.text_field :failed_attempts, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:failed_attempts].none?, "border-red-400 focus:outline-red-600": user.errors[:failed_attempts].any?}]
+
+  div class="my-5"
+    = form.label :unlock_token
+    = form.text_field :unlock_token, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:unlock_token].none?, "border-red-400 focus:outline-red-600": user.errors[:unlock_token].any?}]
+
+  div class="my-5"
+    = form.label :locked_at
+    = form.text_field :locked_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:locked_at].none?, "border-red-400 focus:outline-red-600": user.errors[:locked_at].any?}]
+
+  div class="my-5"
+    = form.label :created_at
+    = form.text_field :created_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:created_at].none?, "border-red-400 focus:outline-red-600": user.errors[:created_at].any?}]
+
+  div class="my-5"
+    = form.label :updated_at
+    = form.text_field :updated_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": user.errors[:updated_at].none?, "border-red-400 focus:outline-red-600": user.errors[:updated_at].any?}]
+
+  div class="inline"
+    = form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer"

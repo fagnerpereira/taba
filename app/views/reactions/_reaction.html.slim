@@ -1,0 +1,13 @@
+div id=dom_id(reaction) class="w-full sm:w-auto my-5 space-y-5"
+  div
+    strong class="block font-medium mb-1"
+      | Message:
+    = reaction.message_id
+  div
+    strong class="block font-medium mb-1"
+      | User:
+    = reaction.user_id
+  div
+    strong class="block font-medium mb-1"
+      | Reaction type:
+    = reaction.reaction_type
