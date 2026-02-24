@@ -14,7 +14,27 @@
 - [x] Banco de dados: PostgreSQL
 - [x] Testes: RSpec com SimpleCov
 
-### Funcionalidades - API - 35%
+### Seeds & Deploy
+
+- [] Criar script que popula o banco via chamadas HTTP aos endpoints da API:
+- [] 3-5 comunidades
+- [] 50 usuários únicos
+- [] 1000 mensagens:
+  - [] 70% são posts principais
+  - [] 30% são comentários/respostas
+- [] 20 IPs únicos diferentes
+- [] 80% das mensagens têm pelo menos uma reação
+- [] URL da aplicação: [URL]
+- [] Seeds executados (dados de exemplo visíveis)
+
+#### Tecnologias sugeridas:
+
+- [] Ruby: usar net/http, httparty ou faraday
+- [] Node: usar axios ou fetch
+- [] Python: usar requests
+- [] Bash: usar curl
+
+### Funcionalidades - API
 
 - [] POST /api/v1/messages (criar mensagem + sentiment)
 - [] POST /api/v1/reactions (com proteção de concorrência)
