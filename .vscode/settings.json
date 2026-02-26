@@ -2,5 +2,6 @@
     "[ruby]": {
         "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
         "editor.formatOnSave": true
-    }
+    },
+    "pieces.cloudCapabilities": "Blended"
 }
