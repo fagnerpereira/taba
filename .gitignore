@@ -77,3 +77,4 @@ node_modules/
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+config/initializers/tng.rb

@@ -62,8 +62,9 @@ user_ips = {
 Rails.logger.debug "Creating Rails community messages..."
 rails_messages = []
 
+# binding.break
 # Top message #1: Popular Rails feature discussion
-m1 = Message.create!(
+m1 = Message.new(
   user: users[:charlie],
   community: communities[:rails],
   content: "What is everyone's favorite new feature in Rails 8.1? I'm loving the simplified Solid Cache setup! It has made our production deployments so much smoother.",
