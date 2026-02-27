@@ -10,6 +10,6 @@ class Message < ApplicationRecord
   before_validation :set_user
 
   def set_user
-    self.user = User.find_or_create_by(username: username)
+    self.user = user.presence || User.find_or_create_by(username: username)
   end
 end

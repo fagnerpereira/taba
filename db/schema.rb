@@ -10,26 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_20_082717) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_27_081408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
-    t.string "name"
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_communities_on_name", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
     t.float "ai_sentiment_score"
     t.bigint "community_id", null: false
-    t.text "content"
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.bigint "parent_message_id"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.string "user_ip"
+    t.string "user_ip", null: false
     t.index ["community_id"], name: "index_messages_on_community_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -37,7 +38,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_20_082717) do
   create_table "reactions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "message_id", null: false
-    t.string "reaction_type"
+    t.string "reaction_type", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["message_id"], name: "index_reactions_on_message_id"
@@ -47,10 +48,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_20_082717) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
+    t.string "username", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "messages", "communities"
+  add_foreign_key "messages", "messages", column: "parent_message_id"
   add_foreign_key "messages", "users"
   add_foreign_key "reactions", "messages"
   add_foreign_key "reactions", "users"
