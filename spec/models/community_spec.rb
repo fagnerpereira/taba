@@ -1,5 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Community, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:messages).dependent(:destroy) }
+  it { should validate_presence_of(:name) }
 end

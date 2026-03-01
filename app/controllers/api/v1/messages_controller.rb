@@ -47,6 +47,7 @@ module Api
       # end
 
       def create
+        # binding.break
         @message = Message.new(message_params)
 
         respond_to do |format|

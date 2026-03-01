@@ -63,7 +63,6 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "ruby-lsp-rails"
   gem "ruby-lsp-rspec", require: false
-  gem "ruby-lsp-rails-factory-bot", require: false
 end
 
 group :development do
@@ -76,6 +75,7 @@ group :test do
   # Code coverage analysis tool [https://github.com/simplecov-ruby/simplecov]
   # Configure for 70%+ coverage target
   gem "simplecov", require: false
+  gem "shoulda-matchers", "~> 6.0"
 end
 
 gem "slim-rails", "~> 4.0"
