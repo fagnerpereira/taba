@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Api::V1::MessagesController, type: :request do
-  let!(:user) { create(:user, username: "testuser") }
-  let!(:community) { create(:community, name: "Test Community") }
+  let!(:user) { create(:user) }
+  let!(:community) { create(:community) }
 
   describe "POST /api/v1/messages" do
     let(:valid_params) do
@@ -37,7 +37,8 @@ RSpec.describe Api::V1::MessagesController, type: :request do
           content: message.content,
           user: {id: user.id, username: user.username},
           community_id: community.id,
-          parent_message_id: nil
+          parent_message_id: nil,
+          ai_sentiment_score: 0.0
         )
       end
     end
@@ -52,7 +53,7 @@ RSpec.describe Api::V1::MessagesController, type: :request do
           .and change(User, :count).by(1)
 
         expect(response).to have_http_status(:created)
-        expect(User.last.username).to eq("new_user")
+        expect(Message.last.user.username).to eq("new_user")
       end
     end
 
@@ -68,7 +69,8 @@ RSpec.describe Api::V1::MessagesController, type: :request do
             content: "This is a reply!",
             community_id: community.id,
             user_ip: "192.168.1.100",
-            parent_message_id: parent_message.id
+            parent_message_id: parent_message.id,
+            ai_sentiment_score: 0.0
           }
         }
       end

@@ -15,6 +15,40 @@ RSpec.describe Message, type: :model do
     it { should validate_presence_of(:username) }
   end
 
+  describe "#analyze_sentiment" do
+    context "when content is empty" do
+      let(:message) { build(:message, content: "") }
+
+      it "returns 0.0" do
+        expect(message.analyze_sentiment).to eq(0.0)
+      end
+    end
+
+    context "when content has positive words" do
+      let(:message) { build(:message, content: "This is a great message") }
+
+      it "returns a positive score" do
+        expect(message.analyze_sentiment).to be(1.0)
+      end
+    end
+
+    context "when content has negative words" do
+      let(:message) { build(:message, content: "This is a bad message") }
+
+      it "returns a negative score" do
+        expect(message.analyze_sentiment).to be(-1.0)
+      end
+    end
+
+    context "when content has neutral words" do
+      let(:message) { build(:message, content: "This is a neutral message") }
+
+      it "returns 0.0" do
+        expect(message.analyze_sentiment).to eq(0.0)
+      end
+    end
+  end
+
   describe "#set_user callback" do
     let(:community) { create(:community) }
 
