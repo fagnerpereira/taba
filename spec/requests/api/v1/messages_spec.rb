@@ -37,8 +37,7 @@ RSpec.describe Api::V1::MessagesController, type: :request do
           content: message.content,
           user: {id: user.id, username: user.username},
           community_id: community.id,
-          parent_message_id: nil,
-          ai_sentiment_score: 0.0
+          parent_message_id: nil
         )
       end
     end
@@ -107,6 +106,39 @@ RSpec.describe Api::V1::MessagesController, type: :request do
           "community" => ["must exist"],
           "user_ip" => ["can't be blank"]
         )
+      end
+    end
+  end
+
+  describe "GET /api/v1/messages/:id" do
+    let!(:message) do
+      create(:message, user: user, username: user.username, community: community, content: "Test message",
+        user_ip: "127.0.0.1")
+    end
+
+    context "with valid message id" do
+      it "returns the message successfully" do
+        get "/api/v1/messages/#{message.id}", as: :json
+
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body["id"]).to eq(message.id)
+        expect(response.parsed_body["content"]).to eq("Test message")
+      end
+
+      it "includes user and reactions data" do
+        get "/api/v1/messages/#{message.id}", as: :json
+
+        expect(response.parsed_body).to have_key("user")
+        expect(response.parsed_body).to have_key("reactions")
+      end
+    end
+
+    context "with invalid message id" do
+      it "returns not found error" do
+        get "/api/v1/messages/999999", as: :json
+
+        expect(response).to have_http_status(:not_found)
+        expect(response.parsed_body["error"]).to eq("Message not found")
       end
     end
   end

@@ -2,9 +2,7 @@ class Reaction < ApplicationRecord
   belongs_to :message
   belongs_to :user
 
-  # enum :reaction_type, {
-  #   like: "like",
-  #   love: "love",
-  #   insightful: "insightful"
-  # }
+  validates :reaction_type, presence: true
+  validates :user, presence: true
+  validates :message, presence: true
 end

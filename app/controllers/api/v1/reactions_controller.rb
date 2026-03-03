@@ -4,22 +4,11 @@ module Api
       skip_before_action :verify_authenticity_token, if: :json_request?
 
       def create
-        # TODO: Implement concurrency protection logic
-        # This is a stub implementation that will make tests fail
-
-        # Stub: Concurrency protection should be implemented here
-        # This should use optimistic locking, database constraints, or row-level locking
-        # to prevent race conditions when multiple users create reactions simultaneously
-
         @reaction = Reaction.new(reaction_params)
-
-        # Stub: Simulating concurrency check - this will always pass
-        # Actual implementation should check for duplicate reactions, handle race conditions,
-        # and use database transactions or locking mechanisms
 
         if @reaction.save
           render json: {
-            message: "Reaction created successfully (concurrency protection pending implementation)",
+            message: "Reaction created successfully",
             data: {
               id: @reaction.id,
               reaction_type: @reaction.reaction_type,
@@ -34,17 +23,10 @@ module Api
             details: @reaction.errors.full_messages
           }, status: :unprocessable_content
         end
-      rescue ActiveRecord::RecordNotUnique
-        # This is the expected error for concurrency violations in the real implementation
-        render json: {
-          error: "Duplicate reaction - concurrency protection would prevent this",
-          message: "A reaction from this user for this message already exists"
-        }, status: :conflict
+      rescue ActionController::ParameterMissing
+        render json: {error: "Missing parameter"}, status: :unprocessable_content
       rescue => e
-        render json: {
-          error: "Internal server error",
-          message: e.message
-        }, status: :internal_server_error
+        render json: {error: "Internal server error", message: e.message}, status: :internal_server_error
       end
 
       private

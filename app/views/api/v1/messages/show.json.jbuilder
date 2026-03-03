@@ -6,4 +6,11 @@ json.user do
   json.id @message.user.id
   json.username @message.user.username
 end
+
+json.reactions @message.reactions do |reaction|
+  json.id reaction.id
+  json.reaction_type reaction.reaction_type
+  json.user_id reaction.user_id
+end
+
 json.url api_v1_message_url(@message, format: :json)

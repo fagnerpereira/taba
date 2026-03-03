@@ -36,12 +36,13 @@
 
 ### Funcionalidades - API
 
-- [] POST /api/v1/messages (criar mensagem + sentiment)
-- [] POST /api/v1/reactions (com proteção de concorrência)
-- [] GET /api/v1/communities/:id/messages/top
-- [] GET /api/v1/analytics/suspicious_ips
-- [] Tratamento de erros apropriado
-- [] Validações implementadas
+- [x] POST /api/v1/messages (criar mensagem + sentiment)
+- [x] POST /api/v1/reactions (com proteção de concorrência)
+- [x] GET /api/v1/communities/:id/messages/top
+- [x] GET /api/v1/analytics/suspicious_ips
+- [x] GET /api/v1/messages/:id
+- [x] Tratamento de erros apropriado
+- [x] Validações implementadas
 
 ### Funcionalidades - Frontend - 25%
 

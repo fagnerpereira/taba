@@ -47,31 +47,38 @@ module Api
       # end
 
       def create
-        # binding.break
         @message = Message.new(message_params)
 
         respond_to do |format|
           if @message.save
-            # format.html { redirect_to @message, notice: "Message was successfully created." }
             format.json { render :show, status: :created, location: @message }
           else
-            # format.html { render :new, status: :unprocessable_content }
             format.json { render json: @message.errors, status: :unprocessable_content }
           end
         end
       end
 
+      def show
+        @message = Message.includes(:reactions, :user).find(params[:id])
+
+        render :show
+      rescue ActiveRecord::RecordNotFound
+        render json: {error: "Message not found"}, status: :not_found
+      rescue ActiveRecord::RecordInvalid => e
+        render json: {error: e.message}, status: :unprocessable_content
+      end
+
       private
 
       def message_params
-        params.expect(message: [:content, :username, :community_id, :parent_message_id, :user_ip])
+        params.expect(message: %i[content username community_id parent_message_id user_ip])
       end
 
       def json_request?
         request.format.json?
       end
 
-      def stub_sentiment_analysis(content)
+      def stub_sentiment_analysis(_content)
         # Stub implementation: This will always return 0.5
         # Actual implementation should analyze content and return a score between 0 and 1
         # where 0 is very negative, 0.5 is neutral, and 1 is very positive
