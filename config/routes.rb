@@ -1,28 +1,25 @@
 Rails.application.routes.draw do
-  resources :reactions
-  resources :messages
-  resources :communities
-  resources :users
-
+  # TODO: Funcionalidades - API
   namespace :api do
     namespace :v1 do
       resources :messages, only: [:create, :show]
-      # post "messages", to: "messages#create"
-      post "reactions", to: "reactions#create"
-      get "communities/:id/messages/top", to: "communities#top_messages"
+      resources :reactions, only: [:create]
+      resources :communities, only: [] do
+        member do
+          get :top_messages, path: "messages/top"
+        end
+      end
       get "analytics/suspicious_ips", to: "analytics#suspicious_ips"
     end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", :as => :rails_health_check
+  # TODO: Funcionalidades - Frontend
+  resources :communities, only: [:index, :show] do
+    resources :messages, only: [:create, :show]
+  end
+  resources :reactions, only: [:create]
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  root "communities#index"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get "up" => "rails/health#show", as: :rails_health_check
 end

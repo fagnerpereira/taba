@@ -78,3 +78,4 @@ group :test do
 end
 
 gem "slim-rails", "~> 4.0"
+gem 'slim_lint'

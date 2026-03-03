@@ -1,0 +1,9 @@
+.bg-gray-50.rounded-2xl.p-6.mb-8#new_message
+  h3.text-lg.font-semibold.mb-4 Postar uma nova mensagem
+  = form_with(model: [community, message], class: "space-y-4") do |f|
+    = text_field_tag :username, "", placeholder: "Seu username", class: "w-full rounded-lg border-gray-200 focus:ring-blue-500", required: true
+    = f.text_area :content, rows: 3, placeholder: "O que você está pensando?", class: "w-full rounded-lg border-gray-200 focus:ring-blue-500", required: true
+    = f.hidden_field :user_ip, value: request.remote_ip
+    .flex.justify-between.items-center
+      .text-xs.text-gray-400 Digite seu username acima e sua mensagem
+      = f.submit "Postar", class: "bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"

@@ -1,0 +1,5 @@
+.flex.items-center.space-x-3 id="#{dom_id(message)}_reactions_list"
+  - message.reactions.group(:reaction_type).count.each do |type, count|
+    .flex.items-center.bg-gray-50.px-2.py-1.rounded-lg.border.border-gray-100
+      span.text-sm = type
+      span.ml-1.text-xs.font-bold.text-gray-600 = count

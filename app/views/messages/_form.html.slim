@@ -1,33 +1,26 @@
-= form_with(model: message, class: "contents") do |form|
+= form_with(model: message, id: dom_id(message, :form), class: "space-y-4") do |form|
   - if message.errors.any?
-    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3" id="error_explanation"
-      h2
-        = pluralize(message.errors.count, "error")
-        |  prohibited this message from being saved:
-
+    div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md" id="error_explanation"
       ul class="list-disc ml-6"
         - message.errors.each do |error|
           li = error.full_message
 
-  div class="my-5"
-    = form.label :content
-    = form.text_area :content, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full h-32", {"border-gray-400 focus:outline-blue-600": message.errors[:content].none?, "border-red-400 focus:outline-red-600": message.errors[:content].any?}]
+  = form.hidden_field :community_id
+  = form.hidden_field :parent_message_id
 
-  div class="my-5"
-    = form.label :community_id
-    = form.text_field :community_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:community_id].none?, "border-red-400 focus:outline-red-600": message.errors[:community_id].any?}]
+  / User IP should be handled by the controller usually, but we can mock it here for the challenge
+  = form.hidden_field :user_ip, value: request.remote_ip
 
-  div class="my-5"
-    = form.label :user_id
-    = form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:user_id].none?, "border-red-400 focus:outline-red-600": message.errors[:user_id].any?}]
+  div
+    = form.label :username, class: "block text-sm font-medium text-gray-700"
+    = form.text_field :username,
+      placeholder: "Your username",
+      class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm "\
+        "focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
 
-  div class="my-5"
-    = form.label :parent_id
-    = form.text_field :parent_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:parent_id].none?, "border-red-400 focus:outline-red-600": message.errors[:parent_id].any?}]
+  div
+    = form.label :content, class: "block text-sm font-medium text-gray-700"
+    = form.text_area :content, rows: 3, placeholder: "What's on your mind?", class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
 
-  div class="my-5"
-    = form.label :deleted_at
-    = form.text_field :deleted_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": message.errors[:deleted_at].none?, "border-red-400 focus:outline-red-600": message.errors[:deleted_at].any?}]
-
-  div class="inline"
-    = form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer"
+  div class="flex justify-end"
+    = form.submit "Post", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"

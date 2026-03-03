@@ -1,71 +1,24 @@
 class ReactionsController < ApplicationController
-  before_action :set_reaction, only: %i[show edit update destroy]
-
-  # GET /reactions or /reactions.json
-  def index
-    @reactions = Reaction.all
-  end
-
-  # GET /reactions/1 or /reactions/1.json
-  def show
-  end
-
-  # GET /reactions/new
-  def new
-    @reaction = Reaction.new
-  end
-
-  # GET /reactions/1/edit
-  def edit
-  end
-
-  # POST /reactions or /reactions.json
+  # TODO: Reagir a mensagens (sem reload)
   def create
-    @reaction = Reaction.new(reaction_params)
+    @message = Message.find(params[:reaction][:message_id])
+    @reaction = @message.reactions.new(reaction_params)
+    # Mocking user_id for frontend simplicity in this challenge
+    @reaction.user = User.first_or_create(username: "frontend_user")
 
     respond_to do |format|
       if @reaction.save
-        format.html { redirect_to @reaction, notice: "Reaction was successfully created." }
-        format.json { render :show, status: :created, location: @reaction }
+        format.turbo_stream
+        format.html { redirect_back_or_to(root_path) }
       else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @reaction.errors, status: :unprocessable_content }
+        format.html { redirect_back_or_to(root_path, alert: "Erro ao reagir") }
       end
-    end
-  end
-
-  # PATCH/PUT /reactions/1 or /reactions/1.json
-  def update
-    respond_to do |format|
-      if @reaction.update(reaction_params)
-        format.html { redirect_to @reaction, notice: "Reaction was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @reaction }
-      else
-        format.html { render :edit, status: :unprocessable_content }
-        format.json { render json: @reaction.errors, status: :unprocessable_content }
-      end
-    end
-  end
-
-  # DELETE /reactions/1 or /reactions/1.json
-  def destroy
-    @reaction.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to reactions_path, notice: "Reaction was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_reaction
-    @reaction = Reaction.find(params.expect(:id))
-  end
-
-  # Only allow a list of trusted parameters through.
   def reaction_params
-    params.expect(reaction: [:message_id, :user_id, :reaction_type])
+    params.require(:reaction).permit(:reaction_type)
   end
 end

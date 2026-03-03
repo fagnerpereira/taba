@@ -1,0 +1,5 @@
+= turbo_stream.prepend "messages-timeline" do
+  = render "messages/message_card", message: @message
+
+= turbo_stream.replace "new_message" do
+  = render partial: "communities/message_form", locals: { community: @community, message: Message.new }

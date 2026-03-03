@@ -1,0 +1,34 @@
+.bg-white.rounded-xl.shadow-sm.border.border-gray-100.p-6 id=dom_id(message)
+  .flex.items-start.space-x-4
+    .flex-shrink-0
+      .w-10.h-10.rounded-full.bg-blue-100.flex.items-center.justify-center.text-blue-600.font-bold
+        = message.user.username[0].upcase
+    .flex-1
+      .flex.items-center.justify-between.mb-1
+        span.font-semibold.text-gray-900 = message.user.username
+        span.text-xs.text-gray-400 = time_ago_in_words(message.created_at) + " atrás"
+      
+      .text-gray-800.mb-4 = message.content
+      
+      / TODO: Sentiment Analysis - Visual indicators
+      - if message.ai_sentiment_score.present?
+        .flex.items-center.space-x-2.mb-4
+          - if message.ai_sentiment_score > 0.3
+            span.text-xs.bg-green-100.text-green-700.px-2.py-0.5.rounded-full Positivo 😊
+          - elsif message.ai_sentiment_score < -0.3
+            span.text-xs.bg-red-100.text-red-700.px-2.py-0.5.rounded-full Negativo 😞
+          - else
+            span.text-xs.bg-gray-100.text-gray-700.px-2.py-0.5.rounded-full Neutro 😐
+
+      .flex.items-center.space-x-6.border-t.border-gray-50.pt-4
+        / TODO: Reagir a mensagens (sem reload)
+        = render "messages/reactions_list", message: message
+        
+        .flex.items-center.space-x-2
+          - %w[❤️ 💡 👍].each do |emoji|
+            = button_to emoji, reactions_path(reaction: { message_id: message.id, reaction_type: emoji }), \
+                class: "text-lg hover:scale-110 transition-transform", method: :post
+
+        / TODO: Ver thread de comentários
+        = link_to message_path(message), class: "text-sm text-blue-500 hover:underline flex items-center space-x-1" do
+          span = pluralize(message.replies.count, "resposta")

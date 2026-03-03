@@ -1,0 +1,15 @@
+linters:
+  LineLength:
+    enabled: true
+    max: 120
+
+  TrailingWhitespace:
+    enabled: true
+
+  TrailingBlankLines:
+    enabled: true
+
+  RuboCop:
+    enabled: false
+    ignored_cops:
+      - 'Layout/LineLength'
