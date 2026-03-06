@@ -75,7 +75,7 @@ group :test do
   # Code coverage analysis tool [https://github.com/simplecov-ruby/simplecov]
   # Configure for 70%+ coverage target
   gem "simplecov", require: false
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
 end
 
 gem "slim-rails", "~> 4.0"
