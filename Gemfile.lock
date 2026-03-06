@@ -295,7 +295,7 @@ GEM
       rbs (>= 3, < 5)
     ruby-lsp-rails (0.4.8)
       ruby-lsp (>= 0.26.0, < 0.27.0)
-    ruby-lsp-rspec (0.1.28)
+    ruby-lsp-rspec (0.1.29)
       ruby-lsp (~> 0.26.0)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
@@ -551,7 +551,7 @@ CHECKSUMS
   rubocop-rails (2.34.3) sha256=10d37989024865ecda8199f311f3faca990143fbac967de943f88aca11eb9ad2
   ruby-lsp (0.26.7) sha256=60a1199fc7e329348d63a2479854f94435725d833eeabf3d539b790185cbf21f
   ruby-lsp-rails (0.4.8) sha256=f09d1f926d4063deeb2f3049311925c20dfe6c912371e3bcd04a265a865c44ae
-  ruby-lsp-rspec (0.1.28) sha256=0db3b3ffba08c6d70eb7831e79090a1863f572fe131ed0ecfce8a2f7d01bf491
+  ruby-lsp-rspec (0.1.29) sha256=798be579723376cd56b17d32373288fb1163e4cfe2024c7d068516a1cf214ee5
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   shoulda-matchers (6.5.0) sha256=ef6b572b2bed1ac4aba6ab2c5ff345a24b6d055a93a3d1c3bfc86d9d499e3f44
